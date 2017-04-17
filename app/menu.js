@@ -1,6 +1,8 @@
 // @flow
 import { app, Menu, shell, BrowserWindow } from 'electron';
 
+import { openFolder } from './mainapp/fileIO';
+
 export default class MenuBuilder {
   mainWindow: BrowserWindow;
 
@@ -120,8 +122,12 @@ export default class MenuBuilder {
     const templateDefault = [{
       label: '&File',
       submenu: [{
-        label: '&Open',
-        accelerator: 'Ctrl+O'
+        label: '&Open Folder',
+        accelerator: 'Ctrl+O',
+        click: () => {
+          console.log('open');
+          openFolder(this.mainWindow);
+        }
       }, {
         label: '&Close',
         accelerator: 'Ctrl+W',

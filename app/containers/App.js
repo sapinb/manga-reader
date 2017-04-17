@@ -1,17 +1,12 @@
 // @flow
-import React, { Component } from 'react';
-import type { Children } from 'react';
 
-export default class App extends Component {
-  props: {
-    children: Children
-  };
+import { connect } from 'react-redux';
 
-  render() {
-    return (
-      <div>
-        {this.props.children}
-      </div>
-    );
-  }
-}
+import App from '../components/App';
+import { getImages } from '../reducers';
+
+const mapStateToProps = (state) => ({
+  images: getImages(state)
+});
+
+export default connect(mapStateToProps)(App);
